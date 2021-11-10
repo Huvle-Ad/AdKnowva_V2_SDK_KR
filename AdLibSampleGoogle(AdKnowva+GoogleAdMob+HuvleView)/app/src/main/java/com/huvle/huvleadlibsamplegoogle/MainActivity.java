@@ -1,13 +1,9 @@
 package com.huvle.huvleadlibsamplegoogle;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.RelativeLayout;
 
 import com.byappsoft.huvleadlib.ANClickThroughAction;
 import com.byappsoft.huvleadlib.AdListener;
@@ -15,7 +11,6 @@ import com.byappsoft.huvleadlib.AdView;
 import com.byappsoft.huvleadlib.BannerAdView;
 import com.byappsoft.huvleadlib.NativeAdResponse;
 import com.byappsoft.huvleadlib.ResultCode;
-import com.byappsoft.huvleadlib.SDKSettings;
 import com.byappsoft.sap.launcher.Sap_act_main_launcher;
 import com.byappsoft.sap.utils.Sap_Func;
 import com.google.android.gms.ads.AdRequest;
@@ -129,47 +124,10 @@ public class MainActivity extends Activity {
         super.onResume();
         // TODO - Huvle SDK Library
         Sap_Func.setNotiBarLockScreen(this, false);
-        Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true, new Sap_act_main_launcher.OnLauncher() {
-            @Override
-            public void onDialogOkClicked() {
-                // 동의창 확인후 퍼미션까지 정상 허용된경우 노티바 띄우기.(Exposing notification bar when after confirming approval window and permissions were properly allowed.)
-                if(!checkPermission()){
-                    requestSapPermissions();
-                }
-            }
-            @Override
-            public void onDialogCancelClicked() {
-                // 동의창 취소후 다음 앱 접속시 동의창을 계속 띄울때는 아래코드 주석제거 할것.(Please uncomment the code below if you want to keep displaying an approval window when the users re-open the app, even though the user did not confirm the approval window at first.)
-                // Sap_Func.setNotibarPopState(getBaseContext(), false);
-            }
-            @Override
-            public void onInitSapStartapp() {
-                // 노티바를 띄우지 않는경우(NOTIBA : false) 미디어 권한 여부만 호출.(In case of not exposing notification bar(NOTIBA : false), call only media permission status.)
-                if(!checkPermission()){
-                    requestSapPermissions();
-                }
-            }
-            @Override
-            public void onUnknown() {}
-        });
+        Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
         // TODO - Huvle SDK Library
     }
 
-    // TODO - Huvle SDK Library
-    private boolean checkPermission(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return checkSelfPermission( Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-        }
-        return true;
-    }
-    private void requestSapPermissions() {
-        try{
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-        }catch (Exception ignored){
-        }
-    }
-    // TODO - Huvle SDK Library
 
     @Override
     protected void onDestroy() {

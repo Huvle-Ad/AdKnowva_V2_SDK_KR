@@ -4,8 +4,7 @@
     package="com.huvle.huvleadlibsamplegoogle">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
+
 
     <application
         android:allowBackup="true"
