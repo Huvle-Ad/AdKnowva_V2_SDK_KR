@@ -3,6 +3,7 @@ package com.huvle.huvleadlibsample;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         initBannerView(bav, "test",320,50); // 300 * 250 배너 테스트시(Example for testing 300 * 250 banner)  initBannerView(staticBav, "testbig",300,250);
 
         // 동적으로 구현시(When if apply Static Implementation) BannerAdView Start
-        /*
+
         final BannerAdView bav = new BannerAdView(this);
         initBannerView(bav, "test",320,50); // 300 * 250 배너 테스트시 initBannerView(staticBav, "testbig",300,250);
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_content);
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         bav.setLayoutParams(layoutParams);
         layout.addView(bav);
-        */
+
     }
     private void initBannerView(final BannerAdView bav, String id, int w , int h) {
         bav.setPlacementID(id);

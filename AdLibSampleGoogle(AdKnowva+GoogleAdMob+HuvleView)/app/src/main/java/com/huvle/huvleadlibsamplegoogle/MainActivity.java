@@ -38,34 +38,34 @@ public class MainActivity extends Activity {
         // TODO - Adknowva SDK Library
     }
 
-    public void setGoogleAD(final boolean opt) {
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override public void onInitializationComplete(InitializationStatus initializationStatus) {}
-        });
-        mAdView = findViewById(R.id.gadView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override public void onAdLoaded() {
-                // TODO - Adknowva SDK Library
-                if (loadAd) {
-                    loadAd = false;
-                    bav.stopAd();
-                }
-                // TODO - Adknowva SDK Library
-            }
-            @Override public void onAdFailedToLoad(LoadAdError adError) {
-                // TODO - Adknowva SDK Library
-                if (opt) {
-                    setHuvleAD(false);
-                }
-                // TODO - Adknowva SDK Library
-            }
-            @Override public void onAdOpened() {}
-            @Override public void onAdClicked() {}
-            @Override public void onAdClosed() {}
-        });
-    }
+//    public void setGoogleAD(final boolean opt) {
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override public void onInitializationComplete(InitializationStatus initializationStatus) {}
+//        });
+//        mAdView = findViewById(R.id.gadView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+//        mAdView.setAdListener(new com.google.android.gms.ads.AdListener() {
+//            @Override public void onAdLoaded() {
+//                // TODO - Adknowva SDK Library
+//                if (loadAd) {
+//                    loadAd = false;
+//                    bav.stopAd();
+//                }
+//                // TODO - Adknowva SDK Library
+//            }
+//            @Override public void onAdFailedToLoad(LoadAdError adError) {
+//                // TODO - Adknowva SDK Library
+//                if (opt) {
+//                    setHuvleAD(false);
+//                }
+//                // TODO - Adknowva SDK Library
+//            }
+//            @Override public void onAdOpened() {}
+//            @Override public void onAdClicked() {}
+//            @Override public void onAdClosed() {}
+//        });
+//    }
 
 
     // TODO - Adknowva SDK Library
@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
         // bav.setClickThroughAction(ANClickThroughAction.OPEN_HUVLE_BROWSER); // 광고 클릭시 브라우저를 허블로 Open - 허블 SDK 연동한 업체인경우만(Open the browser as the Huvle browser when clicking on an advertisement(When if Huvle SDK is already integrated))
         bav.setResizeAdToFitContainer(true);
         AdListener adListener = new AdListener() {
-            @Override public void onAdRequestFailed(AdView bav, ResultCode errorCode) {if (opt) {setGoogleAD(false);}}
+            @Override public void onAdRequestFailed(AdView bav, ResultCode errorCode) {}
             @Override public void onAdLoaded(AdView bav) {Log.v("Huvle_Banner", "The Ad Loaded!");}
             @Override public void onAdLoaded(NativeAdResponse nativeAdResponse) {Log.v("Huvle_Banner", "Ad onAdLoaded NativeAdResponse");}
             @Override public void onAdExpanded(AdView bav) {Log.v("Huvle_Banner", "Ad expanded");}
