@@ -79,6 +79,7 @@ dependencies {
 
 ### 3. 앱에 적용하기
 - 광고가 적용될 Activity
++ Java code
 ```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,52 @@ private void initBannerView(final BannerAdView bav, String id, int w , int h) {
       bav.loadAd();
     }
   }, 0);
+}
+```
+
++ Kotlin code
+```java
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+
+    // TODO - Adknowva SDK Library
+    setHuvleAD()
+
+}
+
+// TODO - Adknowva SDK Library
+private fun setHuvleAD() {
+  bav = findViewById(R.id.banner_view)
+  initBannerView(bav,"test",320,50)
+}
+private fun initBannerView(bav: BannerAdView?, id: String, w: Int, h: Int) {
+    bav?.placementID = id
+    bav?.setAdSize(w, h)
+    bav?.shouldServePSAs = false
+    bav?.clickThroughAction =
+        ANClickThroughAction.OPEN_DEVICE_BROWSER // (Open the browser as the default browser when clicking on an advertisement)
+    //bav.setClickThroughAction(ANClickThroughAction.OPEN_HUVLE_BROWSER); // Open the browser as the Huvle browser when clicking on an advertisement(When if Huvle SDK is already integrated
+    bav?.resizeAdToFitContainer = true
+    val adListener: AdListener = object : AdListener {
+        override fun onAdRequestFailed(bav: AdView,errorCode: ResultCode) { /*Handle when there is no advertiment*/}
+
+        override fun onAdLoaded(bav: AdView) {Log.v("Huvle_Banner", "The Ad Loaded!")}
+
+        override fun onAdLoaded(nativeAdResponse: NativeAdResponse) {Log.v("Huvle_Banner", "Ad onAdLoaded NativeAdResponse")}
+
+        override fun onAdExpanded(bav: AdView) {Log.v("Huvle_Banner", "Ad expanded")}
+
+        override fun onAdCollapsed(bav: AdView) {Log.v("Huvle_Banner", "Ad collapsed")}
+
+        override fun onAdClicked(bav: AdView) {Log.v("Huvle_Banner", "Ad clicked; opening browser")}
+
+        override fun onAdClicked(adView: AdView, clickUrl: String) {Log.v("Huvle_Banner", "onAdClicked with click URL")}
+
+        override fun onLazyAdLoaded(adView: AdView) {}
+    }
+    bav?.adListener = adListener
+    Handler(Looper.getMainLooper()).postDelayed({ bav?.loadAd() }, 0)
 }
 ```
 
