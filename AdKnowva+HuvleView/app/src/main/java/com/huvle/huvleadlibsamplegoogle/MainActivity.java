@@ -1,5 +1,6 @@
-package com.huvle.huvleadlibsample;
+package com.huvle.huvleadlibsamplegoogle;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,7 +14,13 @@ import com.byappsoft.huvleadlib.AdView;
 import com.byappsoft.huvleadlib.BannerAdView;
 import com.byappsoft.huvleadlib.NativeAdResponse;
 import com.byappsoft.huvleadlib.ResultCode;
-import com.byappsoft.huvleadlib.SDKSettings;
+import com.byappsoft.sap.launcher.Sap_act_main_launcher;
+import com.byappsoft.sap.utils.Sap_Func;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private BannerAdView bav;
     // TODO - Adknowva SDK Library
 
-    private RelativeLayout layout;
-    private com.google.android.gms.ads.AdView mAdView;
+    private RelativeLayout layout; //정적뷰
+    private com.google.android.gms.ads.AdView mAdView; //구글 Admob
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // huvleView apply
+        Sap_Func.setNotiBarLockScreen(this, false);
+        Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
 
     }
 
@@ -143,3 +153,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+

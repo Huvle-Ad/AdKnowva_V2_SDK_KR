@@ -15,6 +15,11 @@
         tools:replace="android:networkSecurityConfig"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+        <!-- 위의 아이디는 샘플아이디이며, 귀사의 구글 APPLICATION_ID 아이디로 변경하세요. -->
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
