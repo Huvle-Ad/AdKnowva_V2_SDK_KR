@@ -146,8 +146,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
     setContentView(R.layout.activity_main)
 
     // TODO - Adknowva SDK Library
-    // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
-        bav.startAd() // AdKnowva 호출
+    setHuvle() // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
+    bav.startAd() // AdKnowva 호출
     // TODO - Adknowva SDK Library
 }
 
