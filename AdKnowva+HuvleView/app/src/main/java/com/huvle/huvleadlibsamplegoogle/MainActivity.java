@@ -1,8 +1,6 @@
 package com.huvle.huvleadlibsamplegoogle;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.RelativeLayout;
 
@@ -25,11 +23,10 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 public class MainActivity extends AppCompatActivity {
 
     // TODO - Adknowva SDK Library
-    private boolean loadAd = true;
     private BannerAdView bav;
     // TODO - Adknowva SDK Library
 
-    private RelativeLayout layout; //정적뷰
+    private RelativeLayout layout; // 동적뷰
     private com.google.android.gms.ads.AdView mAdView; //구글 Admob
 
     @Override
@@ -38,49 +35,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // TODO - Adknowva SDK Library
-        setHuvleAD(); // 애드노바를 호출하는 Activity onCreate 부분에 적용해준다.
-        bav.startAd(); // 애드노바 단독 또는 호출 우선시 사용 아니라면 주석처리 후 우선 호출되는 AdSDK 에서 처리해준다.
-        // TODO - Adknowva SDK Library
-
+        setHuvleAD(); // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
+        bav.startAd(); // 애드노바 단독 호출 시 사용, 구글 광고 후 애드노바 사용 시 주석처리
+        // 구글 광고 후 애드노바 사용 시
 //        setGoogleAD();
+        // TODO - Adknowva SDK Library
     }
 
-//    private void setGoogleAD(){
-//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-//            @Override public void onInitializationComplete(InitializationStatus initializationStatus) {}
-//        });
-//        mAdView = findViewById(R.id.gadView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
-//        mAdView.setAdListener(new com.google.android.gms.ads.AdListener() {
-//            @Override public void onAdLoaded() {
-//                // TODO - Adknowva SDK Library
-//                // startAd() , stopAd() 메소드를 통해 애드노바의 호출을 결정하면 된다.
-//                if (loadAd) {
-//                    loadAd = false;
-//                    bav.stopAd();
-//                }
-//                // TODO - Adknowva SDK Library
-//                Log.v("GoogleAD", "The Ad Loaded!");
-//            }
-//            @Override public void onAdFailedToLoad(LoadAdError adError) {
-//                // TODO - Adknowva SDK Library
-//                // startAd() , stopAd() 메소드를 통해 애드노바의 호출을 결정하면 된다.
-//                if (loadAd) {
-//                    loadAd = true;
-//                    bav.startAd();
-//                }
-//                // TODO - Adknowva SDK Library
-//                Log.v("GoogleAD", "The Ad failed!");
-//            }
-//            @Override public void onAdOpened() {}
-//            @Override public void onAdClicked() {}
-//            @Override public void onAdClosed() {}
-//        });
-//    }
+/*
+    private void setGoogleAD(){
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override public void onInitializationComplete(InitializationStatus initializationStatus) {}
+        });
+        mAdView = findViewById(R.id.gadView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new com.google.android.gms.ads.AdListener() {
+            @Override public void onAdLoaded() {
+                Log.v("GoogleAD", "The Ad Loaded!");
+            }
+            @Override public void onAdFailedToLoad(LoadAdError adError) {
+                // TODO - Adknowva SDK Library
+                bav.startAd();
+                // TODO - Adknowva SDK Library
+                Log.v("GoogleAD", "The Ad failed!");
+            }
+            @Override public void onAdOpened() {}
+            @Override public void onAdClicked() {}
+            @Override public void onAdClosed() {}
+        });
+    }
+*/
 
 
-
+    // TODO - Adknowva SDK Library
     private void setHuvleAD(){
 
  /*
@@ -88,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     initBannerView 아이디 "test" 값은 http://ssp.huvle.com/ 에서 가입 > 매체생성 > zoneid 입력후 테스트 하시고, release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.(For the “test” value below, please go to http://ssp.huvle.com/ to sign up > create media > Test your app after typing zoneid. Next, contact Huvle before releasing your app for authentication. You must not change the banner size.)
 */
 
-        // 동적으로 구현시(When if apply Static Implementation) BannerAdView Start
+        // 동적으로 구현시(When if apply Dynamic Implementation) BannerAdView Start
 //        bav = new BannerAdView(this);
 //        layout = (RelativeLayout) findViewById(R.id.adview_container);
 //        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -98,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 //        bav.setLayoutParams(layoutParams);
 //        layout.addView(bav);
 
-        // 정적으로 구현시(When if apply Dynamic Implementation) BannerAdView Start
+        // 정적으로 구현시(When if apply Static Implementation) BannerAdView Start
         bav = findViewById(R.id.banner_view);
 
         bav.setPlacementID("test"); // 320*50 banner testID , 300*250 banner test ID "testbig"
@@ -137,20 +125,23 @@ public class MainActivity extends AppCompatActivity {
         bav.init(this);
 
     }
+    // TODO - Adknowva SDK Library
 
     @Override
     protected void onResume() {
         super.onResume();
-        // huvleView apply
+        // TODO - Huvle SDK Library
         Sap_Func.setNotiBarLockScreen(this, false);
         Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
-
+        // TODO - Huvle SDK Library
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        // TODO - Adknowva SDK Library
+        bav.destroy();
+        // TODO - Adknowva SDK Library
     }
 }
 

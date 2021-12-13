@@ -14,7 +14,7 @@
             android:layout_marginBottom="10dp"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
-            &lt;!&ndash; 위의 adUnitId는 테스트아이디이며, 귀사의 아이디로 바꾸셔야 합니다.  &ndash;&gt;
+    &lt;!&ndash; 위의 adUnitId는 테스트아이디이며, 귀사의 아이디로 바꾸셔야 합니다.  &ndash;&gt;
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
