@@ -20,14 +20,13 @@
 
 ## Usages
 ### 1. Manifest
-- networkSecurityConfig 추가(Android 10(API 레벨 29) 이상을 타켓팅하는 경우 requestLegacyExternalStorage추가)
+- networkSecurityConfig 추가
 ```
 <uses-permission android:name="android.permission.INTERNET" />
 
 <application
 	.
 	.
-	android:requestLegacyExternalStorage="true"
 	android:networkSecurityConfig="@xml/network"
 	tools:replace="android:networkSecurityConfig"
 	.
@@ -42,7 +41,6 @@ AdKnowva SDK 를 사용하기 위해서는 gradle에 SDK를 포함한 하위 라
 allprojects {
     repositories {
         google()
-        jcenter()
         maven {
             name "Huvle"
             url "https://sdk.huvle.com/repository/internal"

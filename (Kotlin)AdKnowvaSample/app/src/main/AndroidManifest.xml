@@ -8,7 +8,6 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:requestLegacyExternalStorage="true"
         android:networkSecurityConfig="@xml/network"
         tools:replace="android:networkSecurityConfig"
         android:label="@string/app_name"
