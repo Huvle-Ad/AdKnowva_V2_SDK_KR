@@ -104,30 +104,35 @@ private void setHuvleAD() {
   bav.setAdSize(320, 50) //bav.setAdSize(300, 250);
   // Resizes the container size to fit the banner ad
   bav.setResizeAdToFitContainer(true)
-// bav.setExpandsToFitScreenWidth(true)
-  val adListener: AdListener = object : AdListener {
-      override fun onAdRequestFailed(
-          bav: com.byappsoft.huvleadlib.AdView,
-          errorCode: ResultCode
-      ) {
+  // bav.setExpandsToFitScreenWidth(true)
+  AdListener adListener = new AdListener() {
+      @Override
+      public void onAdRequestFailed(AdView bav, ResultCode errorCode) {
           if (errorCode == null) {
-              Log.v("HuvleBANNER", "Call to loadAd failed")
+              Log.v("HuvleBANNER", "Call to loadAd failed");
           } else {
-              Log.v("HuvleBANNER", "Ad request failed: $errorCode")
+              Log.v("HuvleBANNER", "Ad request failed: " + errorCode);
           }
       }
-      override fun onAdLoaded(ba: com.byappsoft.huvleadlib.AdView) {
-          Log.v("HuvleBANNER", "The Ad Loaded!")
-      }
-      override fun onAdLoaded(nativeAdResponse: NativeAdResponse) {}
-      override fun onAdExpanded(bav: com.byappsoft.huvleadlib.AdView) {}
-      override fun onAdCollapsed(bav: com.byappsoft.huvleadlib.AdView) {}
-      override fun onAdClicked(bav: com.byappsoft.huvleadlib.AdView) {}
-      override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, clickUrl: String) {}
-      override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {}
-  }
-  bav.setAdListener(adListener)
-  bav.init(this)
+
+      @Override
+      public void onAdLoaded(AdView ba) {Log.v("HuvleBANNER", "The Ad Loaded!");}
+      @Override
+      public void onAdLoaded(NativeAdResponse nativeAdResponse) {}
+      @Override
+      public void onAdExpanded(AdView bav) {}
+      @Override
+      public void onAdCollapsed(AdView bav) {}
+      @Override
+      public void onAdClicked(AdView bav) {}
+      @Override
+      public void onAdClicked(AdView adView, String clickUrl) {}
+      @Override
+      public void onLazyAdLoaded(AdView adView) {}
+  };
+  bav.setAdListener(adListener);
+  bav.init(this);
+
 }
 // TODO - Adknowva SDK Library
 ```
