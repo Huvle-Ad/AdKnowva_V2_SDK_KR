@@ -96,7 +96,11 @@ protected void onCreate(Bundle savedInstanceState) {
 // TODO - Adknowva SDK Library
 private void setHuvleAD() {
   // 정적 구현부와 동적구현부는 참고하시어 하나만 적용하시기 바랍니다.
-  // initBannerView 아이디 "test" 값은 http://ssp.huvle.com/ 에서 가입 > 매체생성 > zoneid 입력후 테스트 하시고, release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.
+  // initBannerView 
+  
+  // 아이디 "test" 값은 https://ssp.huvle.com/ 에서 가입 > 매체생성 > zoneid 입력후 테스트 하시고, 
+  // release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.
+  
   bav = findViewById(R.id.banner_view)
   bav.setPlacementID("test") // 320*50 banner testID , 300*250 banner test ID "testbig"
   bav.setShouldServePSAs(false)
