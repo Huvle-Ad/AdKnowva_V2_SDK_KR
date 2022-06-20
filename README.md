@@ -22,6 +22,8 @@
 ### 1. Manifest
 - networkSecurityConfig 추가
 ```
+
+<uses-permission android:name="com.google.android.gms.permission.AD_ID" /> 
 <uses-permission android:name="android.permission.INTERNET" />
 
 <application
@@ -68,14 +70,17 @@ dependencies {
 	/**
 	* adknowva sdk , play-service-ads 
 	*/
-	implementation 'com.google.android.gms:play-services-ads:20.5.0'
-	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.3.1' // Please implement after checking the latest version.
+	implementation 'com.google.android.gms:play-services-ads:20.4.0'
+	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.2.2' // Please implement after checking the latest version.
 	.
 	.
 }
 ```
 
 ### 3. 앱에 적용하기
+
+>#### 배너광고
+
 - 광고가 적용될 Activity
 + Java code
 ```java
@@ -98,16 +103,16 @@ private void setHuvleAD() {
   // 정적 구현부와 동적구현부는 참고하시어 하나만 적용하시기 바랍니다.
   // initBannerView 
   
-  // 아이디 "test" 값은 https://ssp.huvle.com/ 에서 가입 > 매체생성 > zoneid 입력후 테스트 하시고, 
+  // 아이디 "test" 값은 https://ssp.huvle.com/ 에서 가입 > 매체생성 > zoneid 입력 후 테스트 하시고, 
   // release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.
   
-  bav = findViewById(R.id.banner_view)
-  bav.setPlacementID("test") // 320*50 banner testID , 300*250 banner test ID "testbig"
-  bav.setShouldServePSAs(false)
-  bav.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER)
-  bav.setAdSize(320, 50) //bav.setAdSize(300, 250);
+  bav = findViewById(R.id.banner_view);
+  bav.setPlacementID("test"); // 320*50 banner testID , 300*250 banner test ID "testbig"
+  bav.setShouldServePSAs(false);
+  bav.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER);
+  bav.setAdSize(320, 50); //bav.setAdSize(300, 250);
   // Resizes the container size to fit the banner ad
-  bav.setResizeAdToFitContainer(true)
+  bav.setResizeAdToFitContainer(true);
   // bav.setExpandsToFitScreenWidth(true)
   AdListener adListener = new AdListener() {
       @Override
@@ -193,6 +198,86 @@ private fun setHuvleAD() {
 }
 // TODO - Adknowva SDK Library
 ```
+
+
+>#### 전면 광고
++ 전체 적용 방법은 예제 샘플을 참고바랍니다.
++ 광고가 적용될 Activity
+
+
+```java
+
+private void launchInterstitialAd() {
+        final InterstitialAdView iadv = new InterstitialAdView(this);
+        //bav.setBackgroundColor(0xffffffff); // 배경 color
+        iadv.setCloseButtonDelay(10 * 1000); // 10초뒤 X 버튼 활성화
+
+        // 아이디 "testfull" 값은 https://ssp.huvle.com/ 에서 가입 > 매체생성 > fullscreen 체크한 zoneid 입력 후 테스트 하시고, 
+        // release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.
+        iadv.setPlacementID("testfull"); // zoneId
+        iadv.setShouldServePSAs(false);
+        iadv.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER);
+
+
+        AdListener adListener = new AdListener() {
+            @Override
+            public void onAdRequestFailed(AdView bav, ResultCode errorCode) {
+                if (errorCode == null) {
+                    Log.v(IAD_TAG, "Call to loadAd failed");
+                } else {
+                    Log.v(IAD_TAG, "Ad request failed: " + errorCode);
+                }
+            }
+
+            @Override
+            public void onAdLoaded(AdView ba) {
+                Log.v(IAD_TAG, "The Ad Loaded!");
+                iadv.show();
+            }
+
+            @Override
+            public void onAdLoaded(NativeAdResponse nativeAdResponse) {
+                Log.v(IAD_TAG, "Ad onAdLoaded NativeAdResponse");
+            }
+
+            @Override
+            public void onAdExpanded(AdView bav) {
+                Log.v(IAD_TAG, "Ad expanded");
+            }
+
+            @Override
+            public void onAdCollapsed(AdView bav) {
+                Log.v(IAD_TAG, "Ad collapsed");
+            }
+
+            @Override
+            public void onAdClicked(AdView bav) {
+                Log.v(IAD_TAG, "Ad clicked; opening browser");
+            }
+
+            @Override
+            public void onAdClicked(AdView adView, String clickUrl) {
+                Log.v(IAD_TAG, "onAdClicked with click URL");
+            }
+
+            @Override
+            public void onLazyAdLoaded(AdView adView) {
+                Log.v(IAD_TAG, "onLazyAdLoaded");
+            }
+        };
+        iadv.setAdListener(adListener);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                iadv.loadAd();
+            }
+        }, 0);
+    }
+
+```
+
+
 
 
 

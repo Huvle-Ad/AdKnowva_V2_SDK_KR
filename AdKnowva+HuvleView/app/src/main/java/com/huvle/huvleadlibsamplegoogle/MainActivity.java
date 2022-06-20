@@ -1,7 +1,9 @@
 package com.huvle.huvleadlibsamplegoogle;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +12,10 @@ import com.byappsoft.huvleadlib.ANClickThroughAction;
 import com.byappsoft.huvleadlib.AdListener;
 import com.byappsoft.huvleadlib.AdView;
 import com.byappsoft.huvleadlib.BannerAdView;
+import com.byappsoft.huvleadlib.InterstitialAdView;
 import com.byappsoft.huvleadlib.NativeAdResponse;
 import com.byappsoft.huvleadlib.ResultCode;
+import com.byappsoft.huvleadlib.utils.Clog;
 import com.byappsoft.sap.launcher.Sap_act_main_launcher;
 import com.byappsoft.sap.utils.Sap_Func;
 import com.google.android.gms.ads.AdRequest;
@@ -40,6 +44,15 @@ public class MainActivity extends AppCompatActivity {
         // 구글 광고 후 애드노바 사용 시
 //        setGoogleAD();
         // TODO - Adknowva SDK Library
+
+        findViewById(R.id.load_iad_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 전면광고 샘플
+                launchInterstitialAd();
+            }
+        });
+
     }
 
 /*
@@ -126,6 +139,166 @@ public class MainActivity extends AppCompatActivity {
 
     }
     // TODO - Adknowva SDK Library
+
+    //InterstitialAd
+    private void launchInterstitialAd() {
+        final InterstitialAdView iadv = new InterstitialAdView(this);
+        //bav.setBackgroundColor(0xffffffff); // 배경 color
+        iadv.setCloseButtonDelay(10 * 1000); // 10초뒤 X 버튼 활성화
+
+        // 아이디 "testfull" 값은 https://ssp.huvle.com/ 에서 가입 > 매체생성 > fullscreen 체크한 zoneid 입력 후 테스트 하시고,
+        // release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.
+        iadv.setPlacementID("testfull"); // zoneId
+        iadv.setShouldServePSAs(false);
+        iadv.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER);
+
+
+        AdListener adListener = new AdListener() {
+            @Override
+            public void onAdRequestFailed(AdView bav, ResultCode errorCode) {
+                if (errorCode == null) {
+                    Clog.v("HuvleInterstitialAd", "Call to loadAd failed");
+                } else {
+                    Clog.v("HuvleInterstitialAd", "Ad request failed: " + errorCode);
+                }
+            }
+
+            @Override
+            public void onAdLoaded(AdView ba) {
+                Clog.v("HuvleInterstitialAd", "The Ad Loaded!");
+                iadv.show();
+            }
+
+            @Override
+            public void onAdLoaded(NativeAdResponse nativeAdResponse) {
+                Clog.v("HuvleInterstitialAd", "Ad onAdLoaded NativeAdResponse");
+            }
+
+            @Override
+            public void onAdExpanded(AdView bav) {
+                Clog.v("HuvleInterstitialAd", "Ad expanded");
+            }
+
+            @Override
+            public void onAdCollapsed(AdView bav) {
+                Clog.v("HuvleInterstitialAd", "Ad collapsed");
+            }
+
+            @Override
+            public void onAdClicked(AdView bav) {
+                Clog.v("HuvleInterstitialAd", "Ad clicked; opening browser");
+            }
+
+            @Override
+            public void onAdClicked(AdView adView, String clickUrl) {
+                Clog.v("HuvleInterstitialAd", "onAdClicked with click URL");
+            }
+
+            @Override
+            public void onLazyAdLoaded(AdView adView) {
+                Clog.v("HuvleInterstitialAd", "onLazyAdLoaded");
+            }
+        };
+        iadv.setAdListener(adListener);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                iadv.loadAd();
+            }
+        }, 0);
+    }
+
+    // backPressed InterstitialAd load
+    @Override
+    public void onBackPressed() {
+        launchBackButtonAd();
+    }
+
+    private void launchBackButtonAd() {
+        final InterstitialAdView badv = new InterstitialAdView(this);
+//        bav.setBackgroundColor(0xffffffff);
+
+//        badv.setCloseButtonDelay(1 * 1000);     // 1초뒤 [X] 버튼 활성화
+//        badv.setCloseButtonDelay(0);            // 0 이면 [X] 버튼 즉시 노출
+        badv.setCloseButtonDelay(1*300);           // 0 보다 작으면 [X] 버튼 비 노출
+
+
+        badv.setPlacementID("testfull"); // backend
+        badv.setShouldServePSAs(false);
+        badv.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER);
+
+        AdListener adListener = new AdListener() {
+            @Override
+            public void onAdRequestFailed(AdView bav, ResultCode errorCode) {
+                if (errorCode == null) {
+                    Clog.v("backIAD", "Call to loadAd failed");
+                } else {
+                    Clog.v("backIAD", "Ad request failed: " + errorCode);
+                }
+                // 백버튼 광고 실패시 앱종료
+//                MyActivity.super.onBackPressed();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 400);
+            }
+
+            @Override
+            public void onAdLoaded(AdView ba) {
+                Clog.v("backIAD", "The Ad Loaded!");
+                badv.show();
+            }
+
+            @Override
+            public void onAdLoaded(NativeAdResponse nativeAdResponse) {
+                Clog.v("backIAD", "Ad onAdLoaded NativeAdResponse");
+            }
+
+            @Override
+            public void onAdExpanded(AdView bav) {
+                Clog.v("backIAD", "Ad expanded");
+            }
+
+            @Override
+            public void onAdCollapsed(AdView bav) {
+                Clog.v("backIAD", "Ad collapsed");
+                // 백버튼 광고 종료시 앱종료
+//                MyActivity.super.onBackPressed();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 400);
+            }
+
+            @Override
+            public void onAdClicked(AdView bav) {
+                Clog.v("backIAD", "Ad clicked; opening browser");
+            }
+
+            @Override
+            public void onAdClicked(AdView adView, String clickUrl) {
+                Clog.v("backIAD", "onAdClicked with click URL");
+            }
+
+            @Override
+            public void onLazyAdLoaded(AdView adView) {
+                Clog.v("backIAD", "onLazyAdLoaded");
+            }
+        };
+        badv.setAdListener(adListener);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                badv.loadAd();
+            }
+        }, 0);
+    }
 
     @Override
     protected void onResume() {

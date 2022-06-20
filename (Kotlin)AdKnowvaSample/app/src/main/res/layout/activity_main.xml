@@ -20,6 +20,16 @@
 <!--        app:layout_constraintStart_toStartOf="parent">-->
 <!--    </com.google.android.gms.ads.AdView>-->
 
+    <Button
+        android:id="@+id/load_iad_btn"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="196dp"
+        android:text="Load Interstitial AD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.byappsoft.huvleadlib.BannerAdView
         android:id="@+id/banner_view"
