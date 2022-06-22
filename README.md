@@ -210,7 +210,9 @@ private fun setHuvleAD() {
 private void launchInterstitialAd() {
         final InterstitialAdView iadv = new InterstitialAdView(this);
         //bav.setBackgroundColor(0xffffffff); // 배경 color
-        iadv.setCloseButtonDelay(10 * 1000); // 10초뒤 X 버튼 활성화
+        iadv.setCloseButtonDelay(10 * 1000);  // 10초 뒤 닫기 버튼 활성화
+        //badv.setCloseButtonDelay(0);        // 즉시 활성화
+        //iadv.setCloseButtonDelay(-1);       // 닫기버튼 비활성화
 
         // 아이디 "testfull" 값은 https://ssp.huvle.com/ 에서 가입 > 매체생성 > fullscreen 체크한 zoneid 입력 후 테스트 하시고, 
         // release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.

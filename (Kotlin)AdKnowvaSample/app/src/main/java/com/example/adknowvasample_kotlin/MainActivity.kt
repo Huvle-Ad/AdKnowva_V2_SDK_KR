@@ -125,6 +125,8 @@ class MainActivity : AppCompatActivity() {
         val iadv = InterstitialAdView(this)
         //bav.setBackgroundColor(0xffffffff); // 배경 color
         iadv.closeButtonDelay = 10 * 1000 // 10초뒤 X 버튼 활성화
+//        iadv.closeButtonDelay = 0         // X 버튼 즉시 활성화
+//        iadv.closeButtonDelay = -1        // X 버튼 비활성화
 
         // 아이디 "testfull" 값은 https://ssp.huvle.com/ 에서 가입 > 매체생성 > fullscreen 체크한 zoneid 입력 후 테스트 하시고,
         // release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.
@@ -173,7 +175,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         iadv.adListener = adListener
-        Handler().postDelayed({ iadv.loadAd() }, 0)
+        Handler(Looper.getMainLooper()).postDelayed({ iadv.loadAd() }, 0)
     }
 
     // backPressed InterstitialAd load
@@ -183,11 +185,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun launchBackButtonAd() {
         val badv = InterstitialAdView(this)
-        // bav.setBackgroundColor(0xffffffff);
-        // badv.setCloseButtonDelay(1 * 1000);     // 1초뒤 [X] 버튼 활성화
-        // badv.setCloseButtonDelay(0);            // 0 이면 [X] 버튼 즉시 노출
-        badv.closeButtonDelay = 1 * 300 // 0 보다 작으면 [X] 버튼 비 노출
-        badv.placementID = "testfull" // backend
+        // bav.setBackgroundColor(-0x1)
+        // badv.setCloseButtonDelay = 10 * 1000 // 10초뒤 [X] 버튼 활성화
+        // badv.setCloseButtonDelay = 0         // 0 이면 [X] 버튼 즉시 노출
+        badv.closeButtonDelay = -1              // 0 보다 작으면 [X] 버튼 비 노출
+        badv.placementID = "testfull" // zoneId
         badv.shouldServePSAs = false
         badv.clickThroughAction = ANClickThroughAction.OPEN_DEVICE_BROWSER
         val adListener: AdListener = object : AdListener {
@@ -201,7 +203,6 @@ class MainActivity : AppCompatActivity() {
                     Log.v("backIAD", "Ad request failed: $errorCode")
                 }
                 // 백버튼 광고 실패시 앱종료
-//                MyActivity.super.onBackPressed();
                 Handler(Looper.getMainLooper()).postDelayed({ finish() }, 400)
             }
 
@@ -221,8 +222,7 @@ class MainActivity : AppCompatActivity() {
             override fun onAdCollapsed(bav: com.byappsoft.huvleadlib.AdView) {
                 Log.v("backIAD", "Ad collapsed")
                 // 백버튼 광고 종료시 앱종료
-//                MyActivity.super.onBackPressed();
-                Handler().postDelayed({ finish() }, 400)
+                Handler(Looper.getMainLooper()).postDelayed({ finish() }, 400)
             }
 
             override fun onAdClicked(bav: com.byappsoft.huvleadlib.AdView) {
@@ -240,8 +240,6 @@ class MainActivity : AppCompatActivity() {
         badv.adListener = adListener
         Handler(Looper.getMainLooper()).postDelayed({ badv.loadAd() }, 0)
     }
-
-
 
 
     // TODO - Adknowva SDK Library
