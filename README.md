@@ -279,7 +279,7 @@ private void launchInterstitialAd() {
 
 ```
 
->### 뒤로가기 버튼 광고
+>### 전면광고_BackButton 기능
 + 전체 적용 방법은 예제 샘플을 참고바랍니다.
 + 광고가 적용될 Activity
 - BackAdListener 사용
@@ -301,7 +301,7 @@ private void launchInterstitialAd() {
 //        badv.setCloseButtonDelay(-1);        // 닫기버튼 비활성화
 
 
-        badv.setPlacementID("testfull"); // backend
+        badv.setPlacementID("testfull"); // ZoneId
         badv.setShouldServePSAs(false);
         badv.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER);
 
