@@ -4,7 +4,7 @@
 
 애드노바(AdKnowva)의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 이용해 간단하게 연동이 가능합니다.
 아래 가이드 문서 내용은 본 문서 적용가이드의 **"모든 애드노바 샘플 프로젝트 다운로드"** 하시면 모든 내용을 보실 수 있습니다.
-연동시 애드노바(AdKnowva) 최신버전을 확인해 주세요. 현재 최신버전은 **1.3.1** 버전입니다.
+연동시 애드노바(AdKnowva) 최신버전을 확인해 주세요. 현재 최신버전은 **1.4.1** 버전입니다.
 
 
 
@@ -279,6 +279,109 @@ private void launchInterstitialAd() {
 
 ```
 
+>### 뒤로가기 버튼 광고
++ 전체 적용 방법은 예제 샘플을 참고바랍니다.
++ 광고가 적용될 Activity
+- BackAdListener 사용
+
+```java
+
+// backPressed InterstitialAd load
+    @Override
+    public void onBackPressed() {
+        launchBackButtonAd();
+    }
+
+    private void launchBackButtonAd() {
+        final InterstitialAdView badv = new InterstitialAdView(this);
+//        bav.setBackgroundColor(0xffffffff);
+
+//        badv.setCloseButtonDelay(10 * 1000); // 10초 뒤 닫기 버튼 활성화
+        badv.setCloseButtonDelay(0);           // 즉시 활성화
+//        badv.setCloseButtonDelay(-1);        // 닫기버튼 비활성화
+
+
+        badv.setPlacementID("testfull"); // backend
+        badv.setShouldServePSAs(false);
+        badv.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER);
+
+        AdListener adListener = new BackAdListener() {
+            @Override
+            public void onBackPressed() {
+                Log.v("backIAD", "BackAdListener.onBackPressed()!");
+            }
+
+            @Override
+            public void onAdLoaded(AdView adView) {
+                Log.v("backIAD", "The Ad Loaded!");
+                badv.show();
+
+            }
+
+            @Override
+            public void onAdLoaded(NativeAdResponse nativeAdResponse) {
+                Log.v("backIAD", "Ad onAdLoaded NativeAdResponse");
+            }
+
+            @Override
+            public void onAdRequestFailed(AdView adView, ResultCode errorCode) {
+                if (errorCode == null) {
+                    Log.v("backIAD", "Call to loadAd failed");
+                } else {
+                    Log.v("backIAD", "Ad request failed: " + errorCode);
+                }
+                // 백버튼 광고 실패시 앱종료
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 400);
+            }
+
+            @Override
+            public void onAdExpanded(AdView adView) {
+                Log.v("backIAD", "Ad expanded");
+            }
+
+            @Override
+            public void onAdCollapsed(AdView adView) {
+                // 닫기 버튼 클릭시 앱종료
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 400);
+            }
+
+            @Override
+            public void onAdClicked(AdView adView) {
+                Log.v("backIAD", "Ad clicked; opening browser");
+            }
+
+            @Override
+            public void onAdClicked(AdView adView, String s) {
+                Log.v("backIAD", "onAdClicked with click URL");
+            }
+
+            @Override
+            public void onLazyAdLoaded(AdView adView) {
+                Clog.v("backIAD", "onLazyAdLoaded");
+            }
+        };
+
+        badv.setAdListener(adListener);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                badv.loadAd();
+            }
+        }, 0);
+    }
+
+```
 
 
 

@@ -192,9 +192,23 @@ class MainActivity : AppCompatActivity() {
         badv.placementID = "testfull" // zoneId
         badv.shouldServePSAs = false
         badv.clickThroughAction = ANClickThroughAction.OPEN_DEVICE_BROWSER
-        val adListener: AdListener = object : AdListener {
+
+        val adListener: AdListener = object : BackAdListener {
+            override fun onBackPressed() {
+                Log.v("backIAD", "BackAdListener.onBackPressed()!")
+            }
+
+            override fun onAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {
+                Log.v("backIAD", "The Ad Loaded!")
+                badv.show()
+            }
+
+            override fun onAdLoaded(nativeAdResponse: NativeAdResponse) {
+                Log.v("backIAD", "Ad onAdLoaded NativeAdResponse")
+            }
+
             override fun onAdRequestFailed(
-                bav: com.byappsoft.huvleadlib.AdView,
+                adView: com.byappsoft.huvleadlib.AdView,
                 errorCode: ResultCode
             ) {
                 if (errorCode == null) {
@@ -206,39 +220,32 @@ class MainActivity : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed({ finish() }, 400)
             }
 
-            override fun onAdLoaded(ba: com.byappsoft.huvleadlib.AdView) {
-                Log.v("backIAD", "The Ad Loaded!")
-                badv.show()
+            override fun onAdExpanded(adView: com.byappsoft.huvleadlib.AdView) {
+                Log.v("backIAD", "Ad expanded")
             }
 
-            override fun onAdLoaded(nativeAdResponse: NativeAdResponse) {
-                Log.v("backIAD", "Ad onAdLoaded NativeAdResponse")
-            }
-
-            override fun onAdExpanded(bav: com.byappsoft.huvleadlib.AdView) {
-                Clog.v("backIAD", "Ad expanded")
-            }
-
-            override fun onAdCollapsed(bav: com.byappsoft.huvleadlib.AdView) {
-                Log.v("backIAD", "Ad collapsed")
-                // 백버튼 광고 종료시 앱종료
+            override fun onAdCollapsed(adView: com.byappsoft.huvleadlib.AdView) {
+                // 닫기 버튼 클릭시 앱종료
                 Handler(Looper.getMainLooper()).postDelayed({ finish() }, 400)
             }
 
-            override fun onAdClicked(bav: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView) {
                 Log.v("backIAD", "Ad clicked; opening browser")
             }
 
-            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, clickUrl: String) {
+            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, s: String) {
                 Log.v("backIAD", "onAdClicked with click URL")
             }
 
             override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {
-                Clog.v("backIAD", "onLazyAdLoaded")
+                Log.v("backIAD", "onLazyAdLoaded")
             }
         }
+
         badv.adListener = adListener
+
         Handler(Looper.getMainLooper()).postDelayed({ badv.loadAd() }, 0)
+
     }
 
 
