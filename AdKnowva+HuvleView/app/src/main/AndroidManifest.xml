@@ -21,7 +21,8 @@
             android:value="ca-app-pub-8443262351755961~2922039636"/>
         <!-- 위의 아이디는 샘플아이디이며, 귀사의 구글 APPLICATION_ID 아이디로 변경하세요. -->
 
-        <activity android:name="com.huvle.huvleadlibsamplegoogle.MainActivity">
+        <activity android:name="com.huvle.huvleadlibsamplegoogle.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

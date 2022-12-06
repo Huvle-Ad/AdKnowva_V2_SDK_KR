@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.huvle.huvleadlibsample"
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -40,7 +40,8 @@ dependencies {
 
     // TODO - Adknowva SDK Library
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
-    implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.4.2' // Please implement after checking the latest version.
+    implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.4.3' // Please implement after checking the latest version.
+    implementation 'com.byappsoft.huvleuid:huid:0.0.12'
     // TODO - Adknowva SDK Library
 }
 

@@ -71,9 +71,8 @@ dependencies {
 	/**
 	* adknowva sdk , play-service-ads 
 	*/
-	implementation 'com.google.android.gms:play-services-ads:20.5.0'
+	implementation 'com.google.android.gms:play-services-ads:20.4.0'
 	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.4.3' // Please implement after checking the latest version.
-    implementation 'com.byappsoft.huvleuid:huid:0.0.12' // Please implement after checking the latest version.
 	.
 	.
 }
@@ -146,21 +145,6 @@ private void setHuvleAD() {
 
 }
 
-@Override
-protected void onResume() {
-    super.onResume();
-    //- Huid
-    HuidManager.onResume(this);
-    SDKSettings.onResume(this);
-}
-
-@Override
-protected void onStop() {
-    super.onStop();
-    //- Huid
-    HuidManager.onStop(this);
-    SDKSettings.onStop(this);
-}
 
 @Override
 protected void onDestroy() {
@@ -223,20 +207,6 @@ private fun setHuvleAD() {
   }
   bav.setAdListener(adListener)
   bav.init(this)
-}
-
-override fun onResume() {
-    super.onResume()
-    //- Huid
-    HuidManager.onResume(this)
-    SDKSettings.onResume(this)
-}
-
-override fun onStop() {
-    super.onStop()
-    //- Huid
-    HuidManager.onStop(this)
-    SDKSettings.onStop(this)
 }
 
 override fun onDestroy() {
@@ -431,20 +401,6 @@ private void launchInterstitialAd() {
 
 ```
 
-
-### 4. 광고 타겟팅을 위한 HUID 적용
-- 구글의 서드파티(Third-party) 쿠키 제한 대응 기능
-- 광고 타겟 효율 상승을 위한 HUID 기능
-- **"HUID"** 값은 SDK 제휴 문의를 통해서 발급 받으신 값을 적용하시면 됩니다.
-
-```java
-- res 폴더 - value 폴더 - string.xml 추가
-
-<string name="huvle_adtech_id">com.byappsoft.sap."Huid"</string>
-```
-
-
-[기존 가이드로 이동](./Guide/README.md)
 
 
 

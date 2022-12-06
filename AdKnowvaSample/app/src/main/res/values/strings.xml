@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Huvle InApp Banner Sample</string>
+    <!-- huid 발급 받으신 후 사용하시면 됩니다. -->
+    <string name="huvle_adtech_id">com.byappsoft.sap."발급받은 huid"</string>
 </resources>
