@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     private void launchInterstitialAd() {
         final InterstitialAdView iadv = new InterstitialAdView(this);
         //bav.setBackgroundColor(0xffffffff); // 배경 color
-        iadv.setCloseButtonDelay(10 * 1000);  // 10초 뒤 닫기 버튼 활성화
+        iadv.setCloseButtonDelay(3 * 1000);  // 3초 뒤 닫기 버튼 활성화
         //badv.setCloseButtonDelay(0);        // 즉시 활성화
         //iadv.setCloseButtonDelay(-1);       // 닫기버튼 비활성화
 
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         finish();
                     }
-                }, 400);
+                }, 0);
             }
 
             @Override
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         finish();
                     }
-                }, 400);
+                }, 0);
             }
 
             @Override

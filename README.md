@@ -16,7 +16,7 @@
 - Usages 를 참고하시거나 아래 샘플 프로젝트를 참고해주세요.
 - [모든 애드노바 샘플 프로젝트 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/archive/main.zip)    
 -> 애드노바(AdKnowva) 및 애드노바(AdKnowva) + HuvleSDK , 유니티(Unity3D) 연동예제 
-- [유니티 Plugin 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.4.2)
+- [유니티 Plugin 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.4.3)
 
 
 ## Usages
@@ -258,7 +258,7 @@ override fun onDestroy() {
 private void launchInterstitialAd() {
         final InterstitialAdView iadv = new InterstitialAdView(this);
         //bav.setBackgroundColor(0xffffffff); // 배경 color
-        iadv.setCloseButtonDelay(10 * 1000);  // 10초 뒤 닫기 버튼 활성화
+        iadv.setCloseButtonDelay(3 * 1000);  // 3초 뒤 닫기 버튼 활성화
         //badv.setCloseButtonDelay(0);        // 즉시 활성화
         //iadv.setCloseButtonDelay(-1);       // 닫기버튼 비활성화
 
@@ -384,7 +384,7 @@ private void launchInterstitialAd() {
                     public void run() {
                         finish();
                     }
-                }, 400);
+                }, 0);
             }
 
             @Override
@@ -400,7 +400,7 @@ private void launchInterstitialAd() {
                     public void run() {
                         finish();
                     }
-                }, 400);
+                }, 0);
             }
 
             @Override

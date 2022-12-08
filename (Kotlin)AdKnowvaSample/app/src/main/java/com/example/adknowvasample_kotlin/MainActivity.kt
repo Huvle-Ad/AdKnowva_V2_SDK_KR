@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
     private fun launchInterstitialAd() {
         val iadv = InterstitialAdView(this)
         //bav.setBackgroundColor(0xffffffff); // 배경 color
-        iadv.closeButtonDelay = 10 * 1000 // 10초뒤 X 버튼 활성화
+        iadv.closeButtonDelay = 3 * 1000 // 3초뒤 X 버튼 활성화
 //        iadv.closeButtonDelay = 0         // X 버튼 즉시 활성화
 //        iadv.closeButtonDelay = -1        // X 버튼 비활성화
 
@@ -188,7 +188,7 @@ class MainActivity : AppCompatActivity() {
         // bav.setBackgroundColor(-0x1)
         // badv.setCloseButtonDelay = 10 * 1000 // 10초뒤 [X] 버튼 활성화
         // badv.setCloseButtonDelay = 0         // 0 이면 [X] 버튼 즉시 노출
-        badv.closeButtonDelay = -1              // 0 보다 작으면 [X] 버튼 비 노출
+        badv.closeButtonDelay = 0              // 0 보다 작으면 [X] 버튼 비 노출
         badv.placementID = "testfull" // zoneId
         badv.shouldServePSAs = false
         badv.clickThroughAction = ANClickThroughAction.OPEN_DEVICE_BROWSER
@@ -217,7 +217,7 @@ class MainActivity : AppCompatActivity() {
                     Log.v("backIAD", "Ad request failed: $errorCode")
                 }
                 // 백버튼 광고 실패시 앱종료
-                Handler(Looper.getMainLooper()).postDelayed({ finish() }, 400)
+                Handler(Looper.getMainLooper()).postDelayed({ finish() }, 0)
             }
 
             override fun onAdExpanded(adView: com.byappsoft.huvleadlib.AdView) {
