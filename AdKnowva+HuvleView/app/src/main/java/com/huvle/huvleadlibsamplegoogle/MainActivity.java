@@ -326,8 +326,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         // TODO - Huid
-        HuidManager.onResume(this);
-        SDKSettings.onResume(this);
+        HuidManager.onStop(this);
+        SDKSettings.onStop(this);
         Sap_act_main_launcher.onStop(this);
         // TODO - Huid
     }
