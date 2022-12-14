@@ -47,5 +47,4 @@ dependencies {
      */
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
     implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.4.3' // Please implement after checking the latest version.
-    implementation 'com.byappsoft.huvleuid:huid:0.0.12'
 }

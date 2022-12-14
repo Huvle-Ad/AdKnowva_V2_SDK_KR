@@ -16,7 +16,7 @@
 - Usages 를 참고하시거나 아래 샘플 프로젝트를 참고해주세요.
 - [모든 애드노바 샘플 프로젝트 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/archive/main.zip)    
 -> 애드노바(AdKnowva) 및 애드노바(AdKnowva) + HuvleSDK , 유니티(Unity3D) 연동예제 
-- [유니티 Plugin 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.4.3)
+- [유니티 Plugin 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.4.2)
 
 
 ## Usages
@@ -71,9 +71,8 @@ dependencies {
 	/**
 	* adknowva sdk , play-service-ads 
 	*/
-	implementation 'com.google.android.gms:play-services-ads:20.5.0'
+	implementation 'com.google.android.gms:play-services-ads:20.4.0'
 	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.4.3' // Please implement after checking the latest version.
-    implementation 'com.byappsoft.huvleuid:huid:0.0.12' // Please implement after checking the latest version.
 	.
 	.
 }
@@ -146,21 +145,6 @@ private void setHuvleAD() {
 
 }
 
-@Override
-protected void onResume() {
-    super.onResume();
-    //- Huid
-    HuidManager.onResume(this);
-    SDKSettings.onResume(this);
-}
-
-@Override
-protected void onStop() {
-    super.onStop();
-    //- Huid
-    HuidManager.onStop(this);
-    SDKSettings.onStop(this);
-}
 
 @Override
 protected void onDestroy() {
@@ -225,20 +209,6 @@ private fun setHuvleAD() {
   bav.init(this)
 }
 
-override fun onResume() {
-    super.onResume()
-    //- Huid
-    HuidManager.onResume(this)
-    SDKSettings.onResume(this)
-}
-
-override fun onStop() {
-    super.onStop()
-    //- Huid
-    HuidManager.onStop(this)
-    SDKSettings.onStop(this)
-}
-
 override fun onDestroy() {
     super.onDestroy()
     bav.destroy()
@@ -258,7 +228,7 @@ override fun onDestroy() {
 private void launchInterstitialAd() {
         final InterstitialAdView iadv = new InterstitialAdView(this);
         //bav.setBackgroundColor(0xffffffff); // 배경 color
-        iadv.setCloseButtonDelay(3 * 1000);  // 3초 뒤 닫기 버튼 활성화
+        iadv.setCloseButtonDelay(10 * 1000);  // 10초 뒤 닫기 버튼 활성화
         //badv.setCloseButtonDelay(0);        // 즉시 활성화
         //iadv.setCloseButtonDelay(-1);       // 닫기버튼 비활성화
 
@@ -384,7 +354,7 @@ private void launchInterstitialAd() {
                     public void run() {
                         finish();
                     }
-                }, 0);
+                }, 400);
             }
 
             @Override
@@ -400,7 +370,7 @@ private void launchInterstitialAd() {
                     public void run() {
                         finish();
                     }
-                }, 0);
+                }, 400);
             }
 
             @Override
@@ -431,20 +401,6 @@ private void launchInterstitialAd() {
 
 ```
 
-
-### 4. 광고 타겟팅을 위한 HUID 적용
-- 구글의 서드파티(Third-party) 쿠키 제한 대응 기능
-- 광고 타겟 효율 상승을 위한 HUID 기능
-- **"HUID"** 값은 SDK 제휴 문의를 통해서 발급 받으신 값을 적용하시면 됩니다.
-
-```java
-- res 폴더 - value 폴더 - string.xml 추가
-
-<string name="huvle_adtech_id">com.byappsoft.sap."Huid"</string>
-```
-
-
-[기존 가이드로 이동](./Guide/README.md)
 
 
 

@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">AdKnowvaSample_Kotlin</string>
-    <!-- huid3000은 샘플값이므로 관리자 페이지에서 huid 발급 받으신 후 사용하시면 됩니다. -->
-    <string name="huvle_adtech_id">com.byappsoft.sap.huid3000</string>
 </resources>
