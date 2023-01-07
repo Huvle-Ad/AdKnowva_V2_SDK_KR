@@ -37,7 +37,7 @@ dependencies {
 
     // TODO - Huvle & Adknowva library
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
-    implementation 'com.byappsoft.sap:HuvleSDK:6.0.1'
-    implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.4.3'  // Please implement after checking the latest version.
+    implementation 'com.byappsoft.sap:HuvleSDK:6.0.5'
+    implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.5.0'  // Please implement after checking the latest version.
     // TODO - Huvle & Adknowva library
 }
