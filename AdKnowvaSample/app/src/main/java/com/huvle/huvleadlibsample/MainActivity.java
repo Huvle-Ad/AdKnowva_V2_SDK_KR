@@ -17,11 +17,6 @@ import com.byappsoft.huvleadlib.InterstitialAdView;
 import com.byappsoft.huvleadlib.NativeAdResponse;
 import com.byappsoft.huvleadlib.ResultCode;
 import com.byappsoft.huvleadlib.SDKSettings;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -99,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 정적으로 구현시(When if apply Static Implementation) BannerAdView Start
         bav = findViewById(R.id.banner_view);
-        bav.setPlacementID("test"); // 320*50 banner testID , 300*250 banner test ID "testbig"
+        bav.setPlacementID("apptest3"); // 320*50 banner testID , 300*250 banner test ID "testbig"
         bav.setShouldServePSAs(false);
         bav.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER);
         bav.setAdSize(320, 50); //bav.setAdSize(300, 250);
