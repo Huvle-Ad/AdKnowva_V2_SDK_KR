@@ -1,4 +1,4 @@
-package com.huvle.huvleadlibsample;
+package com.huvle.adknowva_sample;
 
 import android.content.Context;
 

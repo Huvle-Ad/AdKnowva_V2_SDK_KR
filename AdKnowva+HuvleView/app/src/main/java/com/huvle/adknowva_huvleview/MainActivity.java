@@ -1,4 +1,4 @@
-package com.huvle.huvleadlibsamplegoogle;
+package com.huvle.adknowva_huvleview;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,11 +19,6 @@ import com.byappsoft.huvleadlib.ResultCode;
 import com.byappsoft.huvleadlib.utils.Clog;
 import com.byappsoft.sap.launcher.Sap_act_main_launcher;
 import com.byappsoft.sap.utils.Sap_Func;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     // TODO - Adknowva SDK Library
 
     private RelativeLayout layout; // 동적뷰
-    private com.google.android.gms.ads.AdView mAdView; //구글 Admob
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO - Adknowva SDK Library
         setHuvleAD(); // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
-        bav.startAd(); // 애드노바 단독 호출 시 사용, 구글 광고 후 애드노바 사용 시 주석처리
-        // 구글 광고 후 애드노바 사용 시
-//        setGoogleAD();
         // TODO - Adknowva SDK Library
 
         findViewById(R.id.load_iad_btn).setOnClickListener(new View.OnClickListener() {
@@ -55,31 +46,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-/*
-    private void setGoogleAD(){
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override public void onInitializationComplete(InitializationStatus initializationStatus) {}
-        });
-        mAdView = findViewById(R.id.gadView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new com.google.android.gms.ads.AdListener() {
-            @Override public void onAdLoaded() {
-                Log.v("GoogleAD", "The Ad Loaded!");
-            }
-            @Override public void onAdFailedToLoad(LoadAdError adError) {
-                // TODO - Adknowva SDK Library
-                bav.startAd();
-                // TODO - Adknowva SDK Library
-                Log.v("GoogleAD", "The Ad failed!");
-            }
-            @Override public void onAdOpened() {}
-            @Override public void onAdClicked() {}
-            @Override public void onAdClosed() {}
-        });
-    }
-*/
 
 
     // TODO - Adknowva SDK Library
@@ -137,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         };
         bav.setAdListener(adListener);
         bav.init(this);
+        bav.startAd();
 
     }
     // TODO - Adknowva SDK Library
@@ -201,13 +168,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         iadv.setAdListener(adListener);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                iadv.loadAd();
-            }
-        }, 0);
+        iadv.loadAd();
     }
 
     // backPressed InterstitialAd load
@@ -255,12 +216,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.v("backIAD", "Ad request failed: " + errorCode);
                 }
                 // 백버튼 광고 실패시 앱종료
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        finish();
-                    }
-                }, 0);
+                finish();
             }
 
             @Override
@@ -271,12 +227,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdCollapsed(AdView adView) {
                 // 닫기 버튼 클릭시 앱종료
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        finish();
-                    }
-                }, 0);
+                finish();
             }
 
             @Override
@@ -296,13 +247,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         badv.setAdListener(adListener);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                badv.loadAd();
-            }
-        }, 0);
+        badv.loadAd();
     }
 
     @Override
@@ -313,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
         Sap_Func.setNotiBarLockScreen(this, false);
         Sap_act_main_launcher.initsapStart(this, "bynetwork", true, true);
         // TODO - Huvle SDK Library
+
     }
 
 

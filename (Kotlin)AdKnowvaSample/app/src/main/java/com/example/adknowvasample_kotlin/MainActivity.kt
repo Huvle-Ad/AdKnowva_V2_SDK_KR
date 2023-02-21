@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     // TODO - Adknowva SDK Library
 
     private var layout : RelativeLayout? = null
-    lateinit var mAdView : AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,14 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         // TODO - Adknowva SDK Library
         setHuvleAD() // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
-        bav.startAd() // 애드노바 단독 호출 시 사용, 구글 광고 후 애드노바 사용 시 주석처리
-        // 구글 광고 후 애드노바 사용 시
-//        setGoogleAD()
         // TODO - Adknowva SDK Library
 
-        // 구글 광고 후 애드노바 사용 시
-//        setGoogleAD();
-        // TODO - Adknowva SDK Library
 
         findViewById<View>(R.id.load_iad_btn).setOnClickListener {
             // 전면광고 샘플
@@ -40,29 +33,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-/*
-    private fun setGoogleAD(){
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.gadView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
-        mAdView.adListener = object: com.google.android.gms.ads.AdListener() {
-            override fun onAdLoaded() {
-                Log.v("GoogleAD", "The Ad Loaded!")
-            }
-            override fun onAdFailedToLoad(adError : LoadAdError) {
-                // TODO - Adknowva SDK Library
-                bav.startAd()
-                // TODO - Adknowva SDK Library
-                Log.v("GoogleAD", "The Ad failed!")
-            }
-            override fun onAdOpened() {}
-            override fun onAdClicked() {}
-            override fun onAdClosed() {}
-        }
-    }
-*/
 
 
     // TODO - Adknowva SDK Library
@@ -116,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
         bav.setAdListener(adListener)
         bav.init(this)
+        bav.startAd()
 
     }
 
@@ -174,7 +145,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         iadv.adListener = adListener
-        Handler(Looper.getMainLooper()).postDelayed({ iadv.loadAd() }, 0)
+        iadv.loadAd()
     }
 
     // backPressed InterstitialAd load
@@ -216,7 +187,7 @@ class MainActivity : AppCompatActivity() {
                     Log.v("backIAD", "Ad request failed: $errorCode")
                 }
                 // 백버튼 광고 실패시 앱종료
-                Handler(Looper.getMainLooper()).postDelayed({ finish() }, 0)
+                finish()
             }
 
             override fun onAdExpanded(adView: com.byappsoft.huvleadlib.AdView) {
@@ -225,7 +196,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onAdCollapsed(adView: com.byappsoft.huvleadlib.AdView) {
                 // 닫기 버튼 클릭시 앱종료
-                Handler(Looper.getMainLooper()).postDelayed({ finish() }, 400)
+                finish()
             }
 
             override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView) {
@@ -242,18 +213,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         badv.adListener = adListener
-
-        Handler(Looper.getMainLooper()).postDelayed({ badv.loadAd() }, 0)
+        badv.loadAd()
 
     }
-
-
     // TODO - Adknowva SDK Library
 
 
     override fun onDestroy() {
         super.onDestroy()
+        // TODO - Adknowva SDK Library
         bav.destroy()
+        // TODO - Adknowva SDK Library
     }
 
 }
