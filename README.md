@@ -140,9 +140,7 @@ private void setHuvleAD() {
       public void onLazyAdLoaded(AdView adView) {}
   };
   bav.setAdListener(adListener);
-  bav.init(this);
-  bav.startAd();
-
+  bav.loadAd();
 }
 
 
@@ -205,8 +203,7 @@ private fun setHuvleAD() {
       override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {}
   }
   bav.setAdListener(adListener)
-  bav.init(this)
-  bav.startAd()
+  bav.loadAd()
 }
 
 override fun onDestroy() {

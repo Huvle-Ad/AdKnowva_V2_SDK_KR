@@ -85,8 +85,7 @@ class MainActivity : AppCompatActivity() {
             override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {}
         }
         bav.setAdListener(adListener)
-        bav.init(this)
-        bav.startAd()
+        bav.loadAd()
 
     }
 
