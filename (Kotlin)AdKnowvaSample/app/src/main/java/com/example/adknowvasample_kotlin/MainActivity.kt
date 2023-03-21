@@ -56,12 +56,12 @@ class MainActivity : AppCompatActivity() {
 
         // 정적으로 구현시(When if apply Static Implementation) BannerAdView Start
         bav = findViewById(R.id.banner_view)
-        bav.setPlacementID("test") // 320*50 banner testID , 300*250 banner test ID "testbig"
-        bav.setShouldServePSAs(false)
-        bav.setClickThroughAction(ANClickThroughAction.OPEN_DEVICE_BROWSER)
+        bav.placementID = "test" // 320*50 banner testID , 300*250 banner test ID "testbig"
+        bav.shouldServePSAs = false
+        bav.clickThroughAction = ANClickThroughAction.OPEN_DEVICE_BROWSER
         bav.setAdSize(320, 50) //bav.setAdSize(300, 250);
         // Resizes the container size to fit the banner ad
-        bav.setResizeAdToFitContainer(true)
+        bav.resizeAdToFitContainer = true
 //        bav.setExpandsToFitScreenWidth(true)
         val adListener: AdListener = object : AdListener {
             override fun onAdRequestFailed(
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, clickUrl: String) {}
             override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {}
         }
-        bav.setAdListener(adListener)
+        bav.adListener = adListener
         bav.loadAd()
 
     }
