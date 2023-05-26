@@ -250,7 +250,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        // TODO - Adknowva SDK Library
+        if (bav != null) {
+            bav.activityOnPause();
+        }
+        // TODO - Adknowva SDK Library
+        super.onPause();
+    }
+
+    @Override
     protected void onResume() {
+        // TODO - Adknowva SDK Library
+        if (bav != null) {
+            bav.activityOnResume();
+        }
+        // TODO - Adknowva SDK Library
         super.onResume();
 
         // TODO - Huvle SDK Library
@@ -263,10 +278,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        // TODO - Adknowva SDK Library
+        if (bav != null) {
+            bav.destroy();
+        }
+        // TODO - Adknowva SDK Library
         super.onDestroy();
-        // TODO - Adknowva SDK Library
-        bav.destroy();
-        // TODO - Adknowva SDK Library
     }
 }
 

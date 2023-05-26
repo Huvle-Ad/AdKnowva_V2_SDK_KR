@@ -1,8 +1,6 @@
 package com.example.adknowvasample_kotlin
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
@@ -218,11 +216,22 @@ class MainActivity : AppCompatActivity() {
     // TODO - Adknowva SDK Library
 
 
+    override fun onResume() {
+        bav.activityOnResume()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        bav.activityOnPause()
+        super.onPause()
+    }
+
     override fun onDestroy() {
-        super.onDestroy()
         // TODO - Adknowva SDK Library
         bav.destroy()
         // TODO - Adknowva SDK Library
+        super.onDestroy()
+
     }
 
 }

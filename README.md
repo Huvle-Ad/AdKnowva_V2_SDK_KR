@@ -4,7 +4,7 @@
 
 애드노바(AdKnowva)의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 이용해 간단하게 연동이 가능합니다.
 아래 가이드 문서 내용은 본 문서 적용가이드의 **"모든 애드노바 샘플 프로젝트 다운로드"** 하시면 모든 내용을 보실 수 있습니다.
-연동시 애드노바(AdKnowva) 최신버전을 확인해 주세요. 현재 최신버전은 **1.5.0** 버전입니다.
+연동시 애드노바(AdKnowva) 최신버전을 확인해 주세요. 현재 최신버전은 **1.5.1** 버전입니다.
 
 
 
@@ -72,7 +72,7 @@ dependencies {
 	* adknowva sdk , play-service-ads 
 	*/
 	implementation 'com.google.android.gms:play-services-ads:20.4.0'
-	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.5.0' // Please implement after checking the latest version.
+	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.5.1' // Please implement after checking the latest version.
 	.
 	.
 }
@@ -143,13 +143,35 @@ private void setHuvleAD() {
   bav.loadAd();
 }
 
+@Override
+protected void onPause() {
+    // TODO - Adknowva SDK Library
+    if (bav != null) {
+        bav.activityOnPause();
+    }
+    // TODO - Adknowva SDK Library
+    super.onPause();
+}
+
+@Override
+protected void onResume() {
+    // TODO - Adknowva SDK Library
+    if (bav != null) {
+        bav.activityonResume();
+    }
+    // TODO - Adknowva SDK Library
+    super.onResume();
+}
 
 @Override
 protected void onDestroy() {
+    
+    // TODO - Adknowva SDK Library
+    if (bav != null) {
+        bav.destroy();
+    }
+    // TODO - Adknowva SDK Library
     super.onDestroy();
-    // TODO - Adknowva SDK Library
-    bav.destroy();
-    // TODO - Adknowva SDK Library
 }
 
 
@@ -206,9 +228,20 @@ private fun setHuvleAD() {
   bav.loadAd()
 }
 
+override fun onPause() {
+    bav.activityOnPause()
+    super.onPause()
+}
+
+override fun onResume() {
+    bav.activityOnResume()
+    super.onResume()
+}
+
 override fun onDestroy() {
-    super.onDestroy()
     bav.destroy()
+    super.onDestroy()
+    
 }
 
 // TODO - Adknowva SDK Library
