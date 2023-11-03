@@ -14,9 +14,9 @@
 
 ### 적용가이드
 - Usages 를 참고하시거나 아래 샘플 프로젝트를 참고해주세요.
-- [모든 애드노바 샘플 프로젝트 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/archive/main.zip)    
+- [모든 애드노바 샘플 프로젝트 다운로드](https://github.com/Huvle-Ad/AdKnowva_V2_SDK_KR/archive/main.zip)    
 -> 애드노바(AdKnowva) 및 애드노바(AdKnowva) + HuvleSDK , 플러터, 유니티(Unity3D) 연동예제 
-- [유니티 Plugin 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.5.0)
+- [유니티 Plugin 다운로드](https://github.com/Huvle-Ad/AdKnowva_V2_SDK_KR/releases/tag/1.5.2)
 
 
 ## Usages
