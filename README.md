@@ -1,22 +1,22 @@
-# AdKnowva_SDK_android
+# AdKnowva_V2_SDK_android
 
-## 애드노바 (AdKnowva) Install Guide
+## 애드노바_V2 (AdKnowva_V2) Install Guide
 
-애드노바(AdKnowva)의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 이용해 간단하게 연동이 가능합니다.
-아래 가이드 문서 내용은 본 문서 적용가이드의 **"모든 애드노바 샘플 프로젝트 다운로드"** 하시면 모든 내용을 보실 수 있습니다.
-연동시 애드노바(AdKnowva) 최신버전을 확인해 주세요. 현재 최신버전은 **1.5.1** 버전입니다.
+애드노바_V2(AdKnowva_V2)의 연동 방식은 Gradle을 이용한 방법으로 샘플 예제를 이용해 간단하게 연동이 가능합니다.
+아래 가이드 문서 내용은 본 문서 적용가이드의 **"모든 애드노바_V2 샘플 프로젝트 다운로드"** 하시면 모든 내용을 보실 수 있습니다.
+연동시 애드노바(AdKnowva) 최신버전을 확인해 주세요. 현재 최신버전은 **1.5.2** 버전입니다.
 
 
 
 ## 제휴 신청
-애드노바(AdKnowva) SDK 제휴 방법은 https://www.huvleview.com/doc/contact.php 에 절차를 안내 드리고 있습니다.
+애드노바_V2(AdKnowva_V2) SDK 제휴 방법은 https://www.huvleview.com/doc/contact.php 에 절차를 안내 드리고 있습니다.
 
 
 ### 적용가이드
 - Usages 를 참고하시거나 아래 샘플 프로젝트를 참고해주세요.
 - [모든 애드노바 샘플 프로젝트 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/archive/main.zip)    
 -> 애드노바(AdKnowva) 및 애드노바(AdKnowva) + HuvleSDK , 플러터, 유니티(Unity3D) 연동예제 
-- [유니티 Plugin 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.5.1)
+- [유니티 Plugin 다운로드](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.5.0)
 
 
 ## Usages
@@ -71,8 +71,8 @@ dependencies {
 	/**
 	* adknowva sdk , play-service-ads 
 	*/
-	implementation 'com.google.android.gms:play-services-ads:20.6.0' // Please use that version or higher.
-	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.5.1' // Please implement after checking the latest version.
+	implementation 'com.google.android.gms:play-services-ads:20.6.0' // Please use that version or higher
+	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.5.2' // Please implement after checking the latest version.
 	.
 	.
 }
@@ -95,11 +95,11 @@ protected void onCreate(Bundle savedInstanceState) {
   setContentView( R.layout.activity_main );
 
   // TODO - Adknowva SDK Library  
-  setHuvleAD(); // AdKnowva SDK init -  Activivty onCreate 부분에 적용해준다.
+  setAdknowvaAD(); // AdKnowva SDK init -  Activivty onCreate 부분에 적용해준다.
   // TODO - Adknowva SDK Library
 }
 // TODO - Adknowva SDK Library
-private void setHuvleAD() {
+private void setAdknowvaAD() {
   // 정적 구현부와 동적구현부는 참고하시어 하나만 적용하시기 바랍니다.
   // initBannerView 
   
@@ -189,12 +189,12 @@ override fun onCreate(savedInstanceState: Bundle?) {
     setContentView(R.layout.activity_main)
 
     // TODO - Adknowva SDK Library
-    setHuvle() // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
+    setAdknowvaAD() // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
     // TODO - Adknowva SDK Library
 }
 
 // TODO - Adknowva SDK Library
-private fun setHuvleAD() {
+private fun setAdknowvaAD() {
   bav = findViewById(R.id.banner_view)
   bav.setPlacementID("test") // 320*50 banner testID , 300*250 banner test ID "testbig"
   bav.setShouldServePSAs(false)
@@ -416,9 +416,9 @@ private void launchInterstitialAd() {
 
 
 ## License
-AdKnowva SDK 의 저작권은 (주)허블에 있습니다.
+AdKnowva_V2 SDK 의 저작권은 (주)허블에 있습니다.
 ```
-AdKnowva SDK Android
+AdKnowva_V2 SDK Android
 Copyright 2021-present Huvle Corp.
 
 Unauthorized use, modification and redistribution of this software are strongly prohibited.

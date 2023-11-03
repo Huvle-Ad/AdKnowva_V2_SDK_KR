@@ -8,14 +8,15 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.byappsoft.huvleadlib.ANClickThroughAction;
-import com.byappsoft.huvleadlib.AdListener;
-import com.byappsoft.huvleadlib.AdView;
-import com.byappsoft.huvleadlib.BackAdListener;
-import com.byappsoft.huvleadlib.BannerAdView;
-import com.byappsoft.huvleadlib.InterstitialAdView;
-import com.byappsoft.huvleadlib.NativeAdResponse;
-import com.byappsoft.huvleadlib.ResultCode;
+import com.adknowva.adlib.ANClickThroughAction;
+import com.adknowva.adlib.AdListener;
+import com.adknowva.adlib.AdView;
+import com.adknowva.adlib.BackAdListener;
+import com.adknowva.adlib.BannerAdView;
+import com.adknowva.adlib.InterstitialAdView;
+import com.adknowva.adlib.NativeAdResponse;
+import com.adknowva.adlib.ResultCode;
+
 
 public class MainActivity extends AppCompatActivity {
 

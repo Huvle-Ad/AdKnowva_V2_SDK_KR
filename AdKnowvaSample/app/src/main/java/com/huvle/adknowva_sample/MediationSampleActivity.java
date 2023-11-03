@@ -6,12 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.byappsoft.huvleadlib.ANClickThroughAction;
-import com.byappsoft.huvleadlib.AdListener;
-import com.byappsoft.huvleadlib.AdView;
-import com.byappsoft.huvleadlib.BannerAdView;
-import com.byappsoft.huvleadlib.NativeAdResponse;
-import com.byappsoft.huvleadlib.ResultCode;
+import com.adknowva.adlib.ANClickThroughAction;
+import com.adknowva.adlib.AdListener;
+import com.adknowva.adlib.AdView;
+import com.adknowva.adlib.BannerAdView;
+import com.adknowva.adlib.NativeAdResponse;
+import com.adknowva.adlib.ResultCode;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;

@@ -1,6 +1,7 @@
 package com.huvle.adknowva_huvleview;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,18 +14,19 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.byappsoft.huvleadlib.ANClickThroughAction;
-import com.byappsoft.huvleadlib.AdListener;
-import com.byappsoft.huvleadlib.AdView;
-import com.byappsoft.huvleadlib.BackAdListener;
-import com.byappsoft.huvleadlib.BannerAdView;
-import com.byappsoft.huvleadlib.InterstitialAdView;
-import com.byappsoft.huvleadlib.NativeAdResponse;
-import com.byappsoft.huvleadlib.ResultCode;
-import com.byappsoft.huvleadlib.utils.Clog;
+import com.adknowva.adlib.ANClickThroughAction;
+import com.adknowva.adlib.AdListener;
+import com.adknowva.adlib.AdView;
+import com.adknowva.adlib.BackAdListener;
+import com.adknowva.adlib.BannerAdView;
+import com.adknowva.adlib.InterstitialAdView;
+import com.adknowva.adlib.NativeAdResponse;
+import com.adknowva.adlib.ResultCode;
+import com.adknowva.adlib.utils.Clog;
 import com.byappsoft.sap.launcher.Sap_act_main_launcher;
 import com.byappsoft.sap.utils.Sap_Func;
 
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // TODO - Adknowva SDK Library
-        setHuvleAD(); // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
+        setAdknowvaAD(); // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
         // TODO - Adknowva SDK Library
 
         findViewById(R.id.load_iad_btn).setOnClickListener(new View.OnClickListener() {
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // TODO - Adknowva SDK Library
-    private void setHuvleAD(){
+    private void setAdknowvaAD(){
 
  /*
     정적 구현부와 동적구현부는 참고하시어 하나만 적용하시기 바랍니다.(With checking the implementation guide below, please apply Implementation either only Dynamic or Static.)
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onAdLoaded(AdView ba) {Log.v("HuvleBANNER", "The Ad Loaded!");}
+
             @Override
             public void onAdLoaded(NativeAdResponse nativeAdResponse) {}
             @Override
@@ -138,46 +141,46 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdRequestFailed(AdView bav, ResultCode errorCode) {
                 if (errorCode == null) {
-                    Clog.v("HuvleInterstitialAd", "Call to loadAd failed");
+                    Log.v("HuvleInterstitialAd", "Call to loadAd failed");
                 } else {
-                    Clog.v("HuvleInterstitialAd", "Ad request failed: " + errorCode);
+                    Log.v("HuvleInterstitialAd", "Ad request failed: " + errorCode);
                 }
             }
 
             @Override
             public void onAdLoaded(AdView ba) {
-                Clog.v("HuvleInterstitialAd", "The Ad Loaded!");
+                Log.v("HuvleInterstitialAd", "The Ad Loaded!");
                 iadv.show();
             }
 
             @Override
             public void onAdLoaded(NativeAdResponse nativeAdResponse) {
-                Clog.v("HuvleInterstitialAd", "Ad onAdLoaded NativeAdResponse");
+                Log.v("HuvleInterstitialAd", "Ad onAdLoaded NativeAdResponse");
             }
 
             @Override
             public void onAdExpanded(AdView bav) {
-                Clog.v("HuvleInterstitialAd", "Ad expanded");
+                Log.v("HuvleInterstitialAd", "Ad expanded");
             }
 
             @Override
             public void onAdCollapsed(AdView bav) {
-                Clog.v("HuvleInterstitialAd", "Ad collapsed");
+                Log.v("HuvleInterstitialAd", "Ad collapsed");
             }
 
             @Override
             public void onAdClicked(AdView bav) {
-                Clog.v("HuvleInterstitialAd", "Ad clicked; opening browser");
+                Log.v("HuvleInterstitialAd", "Ad clicked; opening browser");
             }
 
             @Override
             public void onAdClicked(AdView adView, String clickUrl) {
-                Clog.v("HuvleInterstitialAd", "onAdClicked with click URL");
+                Log.v("HuvleInterstitialAd", "onAdClicked with click URL");
             }
 
             @Override
             public void onLazyAdLoaded(AdView adView) {
-                Clog.v("HuvleInterstitialAd", "onLazyAdLoaded");
+                Log.v("HuvleInterstitialAd", "onLazyAdLoaded");
             }
         };
         iadv.setAdListener(adListener);
@@ -345,7 +348,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         // TODO - Huvle SDK Library
-
 
     }
 

@@ -5,8 +5,13 @@ import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.byappsoft.huvleadlib.*
-import com.google.android.gms.ads.AdView
+import com.adknowva.adlib.ANClickThroughAction
+import com.adknowva.adlib.AdListener
+import com.adknowva.adlib.BackAdListener
+import com.adknowva.adlib.BannerAdView
+import com.adknowva.adlib.InterstitialAdView
+import com.adknowva.adlib.NativeAdResponse
+import com.adknowva.adlib.ResultCode
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // TODO - Adknowva SDK Library
-        setHuvleAD() // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
+        setAdknowvaAD() // 애드노바 sdk init - Activity onCreate 부분에 적용해준다.
         // TODO - Adknowva SDK Library
 
 
@@ -34,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 
     // TODO - Adknowva SDK Library
-    private fun setHuvleAD() {
+    private fun setAdknowvaAD() {
         /*
             정적 구현부와 동적구현부는 참고하시어 하나만 적용하시기 바랍니다.(With checking the implementation guide below, please apply Implementation either only Dynamic or Static.)
             initBannerView 아이디 "test" 값은 http://ssp.huvle.com/ 에서 가입 > 매체생성 > zoneid 입력후 테스트 하시고, release시점에 허블에 문의주시면 인증됩니다. 배너사이즈는 변경하지 마세요.(For the “test” value below, please go to http://ssp.huvle.com/ to sign up > create media > Test your app after typing zoneid. Next, contact Huvle before releasing your app for authentication. You must not change the banner size.)
@@ -63,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 //        bav.setExpandsToFitScreenWidth(true)
         val adListener: AdListener = object : AdListener {
             override fun onAdRequestFailed(
-                bav: com.byappsoft.huvleadlib.AdView,
+                bav: com.adknowva.adlib.AdView,
                 errorCode: ResultCode
             ) {
                 if (errorCode == null) {
@@ -72,15 +77,15 @@ class MainActivity : AppCompatActivity() {
                     Log.v("HuvleBANNER", "Ad request failed: $errorCode")
                 }
             }
-            override fun onAdLoaded(ba: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdLoaded(ba: com.adknowva.adlib.AdView) {
                 Log.v("HuvleBANNER", "The Ad Loaded!")
             }
             override fun onAdLoaded(nativeAdResponse: NativeAdResponse) {}
-            override fun onAdExpanded(bav: com.byappsoft.huvleadlib.AdView) {}
-            override fun onAdCollapsed(bav: com.byappsoft.huvleadlib.AdView) {}
-            override fun onAdClicked(bav: com.byappsoft.huvleadlib.AdView) {}
-            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, clickUrl: String) {}
-            override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {}
+            override fun onAdExpanded(bav: com.adknowva.adlib.AdView) {}
+            override fun onAdCollapsed(bav: com.adknowva.adlib.AdView) {}
+            override fun onAdClicked(bav: com.adknowva.adlib.AdView) {}
+            override fun onAdClicked(adView: com.adknowva.adlib.AdView, clickUrl: String) {}
+            override fun onLazyAdLoaded(adView: com.adknowva.adlib.AdView) {}
         }
         bav.adListener = adListener
         bav.loadAd()
@@ -102,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         iadv.clickThroughAction = ANClickThroughAction.OPEN_DEVICE_BROWSER
         val adListener: AdListener = object : AdListener {
             override fun onAdRequestFailed(
-                bav: com.byappsoft.huvleadlib.AdView,
+                bav: com.adknowva.adlib.AdView,
                 errorCode: ResultCode
             ) {
                 if (errorCode == null) {
@@ -112,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onAdLoaded(ba: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdLoaded(ba: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "The Ad Loaded!")
                 iadv.show()
             }
@@ -121,23 +126,23 @@ class MainActivity : AppCompatActivity() {
                 Log.v("HuvleInterstitialAd", "Ad onAdLoaded NativeAdResponse")
             }
 
-            override fun onAdExpanded(bav: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdExpanded(bav: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "Ad expanded")
             }
 
-            override fun onAdCollapsed(bav: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdCollapsed(bav: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "Ad collapsed")
             }
 
-            override fun onAdClicked(bav: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdClicked(bav: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "Ad clicked; opening browser")
             }
 
-            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, clickUrl: String) {
+            override fun onAdClicked(adView: com.adknowva.adlib.AdView, clickUrl: String) {
                 Log.v("HuvleInterstitialAd", "onAdClicked with click URL")
             }
 
-            override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {
+            override fun onLazyAdLoaded(adView: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "onLazyAdLoaded")
             }
         }
@@ -165,7 +170,7 @@ class MainActivity : AppCompatActivity() {
                 Log.v("backIAD", "BackAdListener.onBackPressed()!")
             }
 
-            override fun onAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdLoaded(adView: com.adknowva.adlib.AdView) {
                 Log.v("backIAD", "The Ad Loaded!")
                 badv.show()
             }
@@ -175,7 +180,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onAdRequestFailed(
-                adView: com.byappsoft.huvleadlib.AdView,
+                adView: com.adknowva.adlib.AdView,
                 errorCode: ResultCode
             ) {
                 if (errorCode == null) {
@@ -187,24 +192,24 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
 
-            override fun onAdExpanded(adView: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdExpanded(adView: com.adknowva.adlib.AdView) {
                 Log.v("backIAD", "Ad expanded")
             }
 
-            override fun onAdCollapsed(adView: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdCollapsed(adView: com.adknowva.adlib.AdView) {
                 // 닫기 버튼 클릭시 앱종료
                 finish()
             }
 
-            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdClicked(adView: com.adknowva.adlib.AdView) {
                 Log.v("backIAD", "Ad clicked; opening browser")
             }
 
-            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, s: String) {
+            override fun onAdClicked(adView: com.adknowva.adlib.AdView, s: String) {
                 Log.v("backIAD", "onAdClicked with click URL")
             }
 
-            override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {
+            override fun onLazyAdLoaded(adView: com.adknowva.adlib.AdView) {
                 Log.v("backIAD", "onLazyAdLoaded")
             }
         }

@@ -2,12 +2,12 @@ package com.example.adknowvasample_flutter
 
 import android.util.Log
 import android.widget.RelativeLayout
-import com.byappsoft.huvleadlib.ANClickThroughAction
-import com.byappsoft.huvleadlib.AdListener
-import com.byappsoft.huvleadlib.BannerAdView
-import com.byappsoft.huvleadlib.InterstitialAdView
-import com.byappsoft.huvleadlib.NativeAdResponse
-import com.byappsoft.huvleadlib.ResultCode
+import com.adknowva.adlib.ANClickThroughAction
+import com.adknowva.adlib.AdListener
+import com.adknowva.adlib.BannerAdView
+import com.adknowva.adlib.InterstitialAdView
+import com.adknowva.adlib.NativeAdResponse
+import com.adknowva.adlib.ResultCode
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -57,7 +57,7 @@ class MainActivity: FlutterActivity() {
 //                bav.expandsToFitScreenWidth = true
         val adListener: AdListener = object : AdListener {
             override fun onAdRequestFailed(
-                bav: com.byappsoft.huvleadlib.AdView,
+                bav: com.adknowva.adlib.AdView,
                 errorCode: ResultCode
             ) {
                 if (errorCode == null) {
@@ -66,15 +66,15 @@ class MainActivity: FlutterActivity() {
                     Log.v("HuvleBANNER", "Ad request failed: $errorCode")
                 }
             }
-            override fun onAdLoaded(ba: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdLoaded(ba: com.adknowva.adlib.AdView) {
                 Log.v("HuvleBANNER", "The Ad Loaded!")
             }
             override fun onAdLoaded(nativeAdResponse: NativeAdResponse) {}
-            override fun onAdExpanded(bav: com.byappsoft.huvleadlib.AdView) {}
-            override fun onAdCollapsed(bav: com.byappsoft.huvleadlib.AdView) {}
-            override fun onAdClicked(bav: com.byappsoft.huvleadlib.AdView) {}
-            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, clickUrl: String) {}
-            override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {}
+            override fun onAdExpanded(bav: com.adknowva.adlib.AdView) {}
+            override fun onAdCollapsed(bav: com.adknowva.adlib.AdView) {}
+            override fun onAdClicked(bav: com.adknowva.adlib.AdView) {}
+            override fun onAdClicked(adView: com.adknowva.adlib.AdView, clickUrl: String) {}
+            override fun onLazyAdLoaded(adView: com.adknowva.adlib.AdView) {}
         }
         bav.adListener = adListener
         bav.loadAd()
@@ -95,7 +95,7 @@ class MainActivity: FlutterActivity() {
         iadv.clickThroughAction = ANClickThroughAction.OPEN_DEVICE_BROWSER
         val adListener: AdListener = object : AdListener {
             override fun onAdRequestFailed(
-                bav: com.byappsoft.huvleadlib.AdView,
+                bav: com.adknowva.adlib.AdView,
                 errorCode: ResultCode
             ) {
                 if (errorCode == null) {
@@ -105,7 +105,7 @@ class MainActivity: FlutterActivity() {
                 }
             }
 
-            override fun onAdLoaded(ba: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdLoaded(ba: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "The Ad Loaded!")
                 iadv.show()
             }
@@ -114,23 +114,23 @@ class MainActivity: FlutterActivity() {
                 Log.v("HuvleInterstitialAd", "Ad onAdLoaded NativeAdResponse")
             }
 
-            override fun onAdExpanded(bav: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdExpanded(bav: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "Ad expanded")
             }
 
-            override fun onAdCollapsed(bav: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdCollapsed(bav: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "Ad collapsed")
             }
 
-            override fun onAdClicked(bav: com.byappsoft.huvleadlib.AdView) {
+            override fun onAdClicked(bav: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "Ad clicked; opening browser")
             }
 
-            override fun onAdClicked(adView: com.byappsoft.huvleadlib.AdView, clickUrl: String) {
+            override fun onAdClicked(adView: com.adknowva.adlib.AdView, clickUrl: String) {
                 Log.v("HuvleInterstitialAd", "onAdClicked with click URL")
             }
 
-            override fun onLazyAdLoaded(adView: com.byappsoft.huvleadlib.AdView) {
+            override fun onLazyAdLoaded(adView: com.adknowva.adlib.AdView) {
                 Log.v("HuvleInterstitialAd", "onLazyAdLoaded")
             }
         }

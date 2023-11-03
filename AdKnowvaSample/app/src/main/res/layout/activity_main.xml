@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/load_iad_btn"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.byappsoft.huvleadlib.BannerAdView
+    <com.adknowva.adlib.BannerAdView
         android:id="@+id/banner_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,11 +4,11 @@ plugins {
 
 
 android {
-    compileSdk 33
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.huvle.huvleadlibsample"
-        minSdk 16
-        targetSdk 33
+        minSdkVersion 23
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -39,7 +39,7 @@ dependencies {
 
     // TODO - Adknowva SDK Library
     implementation 'com.google.android.gms:play-services-ads:20.6.0'
-    implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.5.1' // Please implement after checking the latest version.
+    implementation 'com.adknowva.adlib:AdknowvaAdLib:1.5.2' // Please implement after checking the latest version.
     // TODO - Adknowva SDK Library
 }
 

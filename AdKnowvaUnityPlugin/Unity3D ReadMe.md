@@ -9,7 +9,7 @@
 ## 애드노바 설치 가이드
 ## Usage
 ### 1. AdKnowvaUnityPackage 및 SampleSource 다운로드
-- [AdKnowvaUnityPackage](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.5.1)
+- [AdKnowvaUnityPackage](https://github.com/Huvle-Ad/AdKnowva_SDK_KR/releases/tag/1.5.0)
 
 ### 2. Unity Project Package import
 ![img1](./img/img1.png)
@@ -31,7 +31,7 @@
 ```java
 
 //Banner AD
-public void setHuvleAD(Activity context){
+public void setAdKnowvaAD(Activity context){
 
         BannerAdView bav = new BannerAdView(context);
 
@@ -189,7 +189,7 @@ public class AdknowvaAd : MonoBehaviour
      
         
         activity.Call("runOnUiThread", new AndroidJavaRunnable(() => {
-            Huvle.Call("setHuvleAD", activity);
+            Huvle.Call("setAdKnowvaAD", activity);
         }));
     }
 
