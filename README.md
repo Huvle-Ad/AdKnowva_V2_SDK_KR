@@ -72,7 +72,7 @@ dependencies {
 	* adknowva sdk , play-service-ads 
 	*/
 	implementation 'com.google.android.gms:play-services-ads:20.6.0' // Please use that version or higher
-	implementation 'com.byappsoft.huvleadlib:HuvleAdLib:1.5.2' // Please implement after checking the latest version.
+	implementation 'com.adknowva.adlib:AdknowvaAdLib:1.5.2' // Please implement after checking the latest version.
 	.
 	.
 }
