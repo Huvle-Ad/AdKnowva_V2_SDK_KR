@@ -1,0 +1,20 @@
+<!-- android/app/src/main/res/layout/activity_main.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- React Native main view -->
+    <FrameLayout
+        android:id="@+id/react_root_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- banner view -->
+    <RelativeLayout
+        android:id="@+id/adview_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
