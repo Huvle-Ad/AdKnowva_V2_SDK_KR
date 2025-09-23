@@ -9,7 +9,7 @@
 
 
 ## 제휴 신청
-애드노바_V2(AdKnowva_V2) SDK 제휴 방법은 https://www.huvleview.com/doc/contact.php 에 절차를 안내 드리고 있습니다.
+애드노바_V2(AdKnowva_V2) SDK 제휴 방법은 https://www.huvleview.com/sub/location.php 에 절차를 안내 드리고 있습니다.
 
 
 ### 적용가이드
